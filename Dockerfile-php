@@ -1,0 +1,6 @@
+FROM php:7.4-cli
+
+RUN apt-get update
+RUN apt-get install -y socat
+
+CMD socat -v unix-listen:/dev/log,fork udp-sendto:syslog:514

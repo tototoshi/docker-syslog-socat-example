@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    container_name: docker-syslog-example-php
+    depends_on:
+      - syslog
+    stdin_open: true
+    volumes:
+      - ./scripts:/scripts
+  syslog:
+    image: voxxit/rsyslog
+    container_name: docker-syslog-example-syslog
+    ports:
+      - "514:514/udp"
